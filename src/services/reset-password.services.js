@@ -1,6 +1,7 @@
-import
-bcrypt
-from 'bcryptjs';
+import {
+    hash
+}
+from 'bcrypt';
 import UsersRepository from '../repositories/users.repository.js';
 import {
     sendMail
@@ -36,7 +37,7 @@ export const ForgotPassword = async (email) => {
             let resetPassword = new ResetPassword();
 
             // creating token 
-            let token = await bcrypt.hash(user.email, 1);
+            let token = await hash(user.email, 1);
 
             // creating base64 encoded token because hash can contain "/" symbol which will give problem if passed as url param.
             token = Buffer.from(token).toString('base64')

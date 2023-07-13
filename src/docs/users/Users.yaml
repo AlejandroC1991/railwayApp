@@ -1,0 +1,64 @@
+paths:
+  /api/users/login:
+    post:
+      summary: Se fija si existe el usuario por email
+      tags:
+        - Users
+      responses:
+        "200":
+          description: El usuario existe
+          content:
+            appplication/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/schemas/User"
+        "400":
+          description: User not found
+/api/users/register:
+  post:
+    summary: Registra el usuario con los datos que le pasamos
+    tags:
+      - Users
+    responses:
+      "200":
+        description: Registra el usuario correctamente
+        content:
+          appplication/json:
+            schema:
+              type: array
+              items:
+                $ref: "#components/schemas/User"
+      "400":
+        description: Ya existe el usuario con ese email
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado de mongodb
+        first_name:
+          type: String
+          description: Nombre del usuario
+        last_name:
+          type: String
+          description: Apellido del usuario
+        email:
+          type: String
+          description: Correo del usuario
+        password:
+          type: String
+          description: Contraseña del usuario
+        rol:
+          type: String
+          description: Rol del usuario, por default (user).
+      example:
+        _id: ObjectId("45689NSJKDFN345")
+        first_name: Alejandro
+        last_name: Celiberto
+        email: alejandro.celiberto@gmail.com
+        password: 34567sadnfk45
+        role: user

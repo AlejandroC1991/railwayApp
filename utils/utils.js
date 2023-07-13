@@ -4,7 +4,7 @@ import {
 import {
     dirname
 } from 'path';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import winston from 'winston';
 
